@@ -16,7 +16,6 @@ event_dep = dependency('libevent', required : true)
 inc = include_directories('include', 'src')
 
 src_files = files(
-  'src/auth.c',
   'src/state-machine.c',
   'src/crypto/aes.c',
   'src/crypto/aes-md5.c',
