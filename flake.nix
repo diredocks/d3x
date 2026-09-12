@@ -26,6 +26,7 @@
 
           buildInputs = with pkgs; [
             libpcap
+            libevent
           ];
 
           meta = with pkgs.lib; {

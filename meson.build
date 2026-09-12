@@ -11,11 +11,13 @@ if get_option('buildtype') == 'debug'
 endif
 
 pcap_dep = dependency('libpcap', required : true)
+event_dep = dependency('libevent', required : true)
 
 inc = include_directories('include', 'src')
 
 src_files = files(
   'src/auth.c',
+  'src/state-machine.c',
   'src/crypto/aes.c',
   'src/crypto/aes-md5.c',
   'src/crypto/base64.c',
@@ -34,6 +36,9 @@ src_files = files(
 executable('zzz',
   src_files,
   include_directories : inc,
-  dependencies : pcap_dep,
+  dependencies : [
+    pcap_dep,
+    event_dep
+  ],
   install : true
 )
