@@ -3,6 +3,7 @@
 #include "utils/log.h"
 
 #include <net/if.h>
+#include <pcap/pcap.h>
 #include <stdlib.h>
 #include <string.h>
 #include <sys/ioctl.h>
@@ -84,4 +85,10 @@ void device_init(const char *interface_name) {
 
   device_set_filter("ether proto 0x888E");
   device_set_addr(interface_name);
+
+  g_device.fd = pcap_get_selectable_fd(g_device.handle);
+  if (g_device.fd < 0) {
+    log_error("pcap has no selectable fd", NULL);
+    exit(EXIT_FAILURE);
+  }
 }

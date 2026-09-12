@@ -7,6 +7,7 @@
 
 struct Device {
   pcap_t *handle;
+  int fd;
   char ip_addr[IP_ADDR_SIZE];
   uint8_t dst_mac[HARDWARE_ADDR_SIZE];
   uint8_t src_mac[HARDWARE_ADDR_SIZE];

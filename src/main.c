@@ -1,9 +1,7 @@
-// less than 320k
-
-#include "auth.h"
 #include "crypto/crypto.h"
 #include "packet/packet.h"
 #include "packet/send.h"
+#include "state-machine.h"
 #include "utils/config.h"
 #include "utils/device.h"
 #include "utils/log.h"
@@ -33,9 +31,8 @@ int main(int argc, char *argv[]) {
   packet_init_default();
   crypto_init();
 
-  auth_handshake();
-  while (auth_loop() == 0) {
-  }
+  state_machine_init();
+  switch_to_state(STATE_START_SENT);
   sig_exit(0);
 
   return 0;
